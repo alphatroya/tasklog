@@ -24,6 +24,7 @@ fn format(issues: Vec<Issues>, host: String) {
         println!("  redmine_id:: `{}`", issue.id);
         println!("  redmine_project:: [[{}]]", issue.project.name);
         println!("  redmine_status:: {}", issue.status.name);
+        println!("  redmine_tracker:: {}", issue.tracker.name);
         println!("  redmine_author:: [[{}]]", issue.author.name);
         println!("  redmine_created:: [[{}]]", format_date(issue.created_on));
         println!("  redmine_updated:: [[{}]]", format_date(issue.updated_on));
@@ -72,9 +73,15 @@ struct Issues {
     subject: String,
     project: Project,
     status: Status,
+    tracker: Tracker,
     author: Author,
     created_on: DateTime<Utc>,
     updated_on: DateTime<Utc>,
+}
+
+#[derive(Debug, Deserialize)]
+struct Tracker {
+    name: String,
 }
 
 #[derive(Debug, Deserialize)]
