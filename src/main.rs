@@ -19,15 +19,28 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 fn format(issues: Vec<Issues>, host: String) {
     println!("");
+    println!("- #[[Heads and Hands]] #Redmine");
+    let pad = " ".repeat(4);
     for issue in issues {
-        println!("- [{}]({}/issues/{})", issue.subject, host, issue.id);
-        println!("  redmine_id:: `{}`", issue.id);
-        println!("  redmine_project:: [[{}]]", issue.project.name);
-        println!("  redmine_status:: {}", issue.status.name);
-        println!("  redmine_tracker:: {}", issue.tracker.name);
-        println!("  redmine_author:: [[{}]]", issue.author.name);
-        println!("  redmine_created:: [[{}]]", format_date(issue.created_on));
-        println!("  redmine_updated:: [[{}]]", format_date(issue.updated_on));
+        println!(
+            "{} - [{}]({}/issues/{})",
+            pad, issue.subject, host, issue.id
+        );
+        println!("{}   redmine_id:: `{}`", pad, issue.id);
+        println!("{}   redmine_project:: [[{}]]", pad, issue.project.name);
+        println!("{}   redmine_status:: {}", pad, issue.status.name);
+        println!("{}   redmine_tracker:: {}", pad, issue.tracker.name);
+        println!("{}   redmine_author:: [[{}]]", pad, issue.author.name);
+        println!(
+            "{}   redmine_created:: [[{}]]",
+            pad,
+            format_date(issue.created_on)
+        );
+        println!(
+            "{}   redmine_updated:: [[{}]]",
+            pad,
+            format_date(issue.updated_on)
+        );
     }
 }
 
