@@ -1,4 +1,4 @@
-use chrono::{DateTime, Datelike, Utc};
+use chrono::{DateTime, Datelike, Local, Utc};
 use std::env;
 
 #[async_std::main]
@@ -19,7 +19,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 fn format(issues: Vec<Issues>, host: String) {
     println!("");
-    println!("- #[[Heads and Hands]] #Redmine");
+    let now = Local::now();
+    println!(
+        "- **{}** #[[Heads and Hands]] #Redmine",
+        now.format("%H:%M").to_string()
+    );
     let pad = " ".repeat(4);
     for issue in issues {
         println!(
