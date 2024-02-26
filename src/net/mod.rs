@@ -11,7 +11,7 @@ pub async fn fetch_data(
     let client = reqwest::Client::new();
 
     let yesterday = Utc::now() - chrono::Duration::days(1);
-    let yesterday = yesterday.format("%Y-%m-%d").to_string();
+    let yesterday = yesterday.format(">=%Y-%m-%d").to_string();
 
     let mut query_params = HashMap::new();
     query_params.insert("assigned_to_id", "me");
