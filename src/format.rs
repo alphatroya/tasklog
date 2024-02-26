@@ -2,6 +2,9 @@ use crate::net::models;
 use chrono::{DateTime, Datelike, Local, Utc};
 
 pub fn print(issues: Vec<models::Issues>, host: String) {
+    if issues.len() == 0 {
+        return;
+    }
     println!("");
     let now = Local::now();
     println!(
